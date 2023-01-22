@@ -23,7 +23,7 @@ const lastName = document.getElementById("last")
 const email = document.getElementById("email")
 const date = document.getElementById("date")
 
-/* Évenements formulaire ouverture et fermeture du formulaire */
+/* Évenements formulaire ouverture et fermeture */
 
 // Fonction d'ouverture du formulaire
 function launchModal() {
@@ -33,7 +33,7 @@ function launchModal() {
  function closeMyForm() {
   modalbg.style.display="none";
 }
-// methode qui appel les fonctions d'ouverture et de fermeture du formulaire
+// Methode qui appel les fonctions d'ouverture et de fermeture du formulaire
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 closeForm.addEventListener("click", closeMyForm)
 
