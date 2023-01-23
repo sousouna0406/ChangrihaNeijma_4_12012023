@@ -162,13 +162,11 @@ img {
   .main-navbar {
     float: left;
     width: 100%;
-
   }
 }
 
 .main-navbar {
   float: right;
-
 }
 
 main {
@@ -628,6 +626,7 @@ footer {
     display: block;
     margin: 32px auto 10px;
     padding: 12px 35px;
+    animation: btn 3s ease-in 0s normal none;
   }
 
   .copyrights {
@@ -690,5 +689,18 @@ footer {
     animation-timing-function: ease-out;
     opacity: 1;
     transform: translateY(0px);
+  }
+}
+
+@keyframes btn {
+  0% {
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px;
+    color: rgb(255, 255, 255);
+
+  }
+
+  100% {
+    scale: 1;
   }
 }
