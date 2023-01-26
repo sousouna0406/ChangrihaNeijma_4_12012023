@@ -39,6 +39,7 @@ img {
   top: 0;
   background-color: #ffffffde;
   z-index: 2;
+  height: 4rem;
 }
 
 .header-logo {
@@ -626,7 +627,7 @@ footer {
     display: block;
     margin: 32px auto 10px;
     padding: 12px 35px;
-    animation: btn 3s ease-in 0s normal none;
+    animation: btn 2s ease-in 1s normal none;
   }
 
   .copyrights {
