@@ -14,7 +14,6 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeForm = document.querySelector(".close")
-
 const form = document.getElementById("form")
 const submit = document.querySelector(".btn-submit")
 const dataForm = document.querySelectorAll(".formData")
@@ -29,20 +28,21 @@ const birthday = document.getElementById("birthdate")
 const msgErrorBirthday = document.getElementById("birthdayErrorMsg")
 const quantity = document.getElementById("quantity")
 const msgErrorQuantity =document.getElementById("quantityErrorMsg")
+const radio = document.querySelectorAll('input[name="location"]')
+const msgErrorRadio = document.getElementById("radioErrorMsg")
 const btnValid = document.querySelector(".btn-submit")
 /* Évenements formulaire ouverture et fermeture */
 
 // Fonction d'ouverture du formulaire
-function launchModal() {
+modalBtn.forEach((btn) => btn.addEventListener("click", function launchModal() {
   modalbg.style.display = "block";
-}
+}));
 // Fonction de fermeture du formulaire
- function closeMyForm() {
+
+
+closeForm.addEventListener("click", function closeMyForm() {
   modalbg.style.display="none";
-}
-// Methode qui appel les fonctions d'ouverture et de fermeture du formulaire
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-closeForm.addEventListener("click", closeMyForm)
+})
 
 /* Regex Email/Prenom/nom*/
 
@@ -59,6 +59,7 @@ nameError.style.display="none"
 nameErrorlast.style.display="none"
 msgErrorEmail.style.display="none"
 msgErrorQuantity.style.display="none"
+msgErrorRadio.style.display="none"
 
 // FONCTION POUR TEST DU PREMON
 
@@ -121,8 +122,8 @@ email.addEventListener("change", function() {
 // FONCTION POUR ANNIVERSAIRE
 
 birthday.addEventListener("change", function () {
-  
-if (!birthday ) {
+  let date = new Date(birthday);
+if (birthday == "") {
   msgErrorBirthday.style.display="block"
   msgErrorBirthday.innerHTML = "Veuillez saisir une date"
   msgErrorBirthday.style.fontSize ="13px"
@@ -139,23 +140,43 @@ if (!birthday ) {
 
 // FONCTION POUR NOMBRE DE TOURNOIS
 
- quantity.addEventListener("change", function () {
+quantity.addEventListener("change", function () {
   const quantityValue = quantity.value
-  if (quantityValue < 0|| quantityValue >99) {
+  if (quantityValue < 0|| quantityValue >99  || quantityValue % 1 !== 0) {
     msgErrorQuantity.style.display="block"
     msgErrorQuantity.innerHTML = "Veuillez entrer un nombre entre 0 et 99"
     msgErrorQuantity.style.fontSize ="13px"
     msgErrorQuantity.style.color ="red"
     quantity.style.color="red"
     quantity.style.border= "red solid 2px"
-  } else {
+  } else  {
     quantity.style.color="green"
     msgErrorQuantity.style.display="none" 
     quantity.style.border= "green solid 3px"  
   }
- })
+
+})
 
 
+
+radio.forEach((radio)=>radio.addEventListener("change", function () {
+  let isChecked = false
+    if (radio.checked) {
+      isChecked = true;
+      }
+    if (isChecked) {
+      console.log("OK.");
+    } else {
+      msgErrorRadio.style.display="block"
+      msgErrorRadio.innerHTML = "Veuillez cocher une ville"
+      msgErrorRadio.style.fontSize ="13px"
+      msgErrorRadio.style.color ="red"
+    }
+}))
+
+
+
+ 
 
 
 

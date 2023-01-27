@@ -641,6 +641,8 @@ footer {
   color: #f00;
   font-size: 10px;
   margin-bottom: -35px;
+  left: -2px;
+  position: relative;
 }
 
 
