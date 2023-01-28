@@ -17,6 +17,7 @@ const closeForm = document.querySelector(".close")
 const form = document.getElementById("form")
 const submit = document.querySelector(".btn-submit")
 const dataForm = document.querySelectorAll(".formData")
+const divValid = document.getElementById("div-valid")
 const firstName = document.getElementById("first")
 const lastName = document.getElementById("last")
 const email = document.getElementById("email")
@@ -193,11 +194,11 @@ function  radioFunction() {
     }
     else{
       console.log("No radio button is checked.");
+      console.log(radio[i].value + " is NOselected");
       msgErrorRadio.style.display="block"
       msgErrorRadio.innerHTML = "Veuillez cocher une ville"
       msgErrorRadio.style.fontSize ="13px"
-      msgErrorRadio.style.color ="red"
-      return false
+      msgErrorRadio.style.color ="red" 
     }
 }
 };
@@ -223,6 +224,22 @@ function  conditionFunction() {
 
 conditionGeneral.addEventListener("change", conditionFunction )
 
+btnValid.addEventListener("click", function (e) {
+  if (validate(form)) {
+    e.preventDefault()
+    console.log("ok");
+    form.style.display = "none"
+    divValid.style.display="flex"
+    validMessage.innerHTML = "Merci pour votre inscription";
+  }
+  else{
+    console.log("ko");
+    e.preventDefault()
+  }
+})
+
+
+
 
 function validate(e) {
   if (firstNameFunction(firstName )&&
@@ -236,10 +253,7 @@ function validate(e) {
                 console.log("OK");
                 return true
               } else {
- 
           console.log("ko");
-          alert("ko")
-          e.preventDefault()
           return false
           }
  }

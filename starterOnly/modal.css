@@ -636,6 +636,27 @@ footer {
   }
 }
 
+#div-valid {
+  display: none;
+  flex-direction: column-reverse;
+  align-items: center;
+  text-align: center;
+  height: 83vh;
+}
+
+.msg-valid {
+
+  font-weight: normal;
+  font-size: 35px;
+  position: relative;
+  bottom: 50%;
+}
+
+#input-valid {
+  position: relative;
+  top: 5rem;
+}
+
 .error {
   display: block;
   color: #f00;
