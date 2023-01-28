@@ -28,10 +28,13 @@ const birthday = document.getElementById("birthdate")
 const msgErrorBirthday = document.getElementById("birthdayErrorMsg")
 const quantity = document.getElementById("quantity")
 const msgErrorQuantity =document.getElementById("quantityErrorMsg")
-const radio = document.querySelectorAll('input[name="location"]')
+const radio = document.getElementsByName("location")
 const msgErrorRadio = document.getElementById("radioErrorMsg")
+const conditionGeneral = document.getElementById("checkbox1")
+const msgErrorCondition = document.getElementById("conditionErrorMsg")
 const btnValid = document.querySelector(".btn-submit")
 /* Évenements formulaire ouverture et fermeture */
+const classError = document.querySelector(".error")
 
 // Fonction d'ouverture du formulaire
 modalBtn.forEach((btn) => btn.addEventListener("click", function launchModal() {
@@ -43,6 +46,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", function launchModal() {
 closeForm.addEventListener("click", function closeMyForm() {
   modalbg.style.display="none";
 })
+
 
 /* Regex Email/Prenom/nom*/
 
@@ -60,15 +64,17 @@ nameErrorlast.style.display="none"
 msgErrorEmail.style.display="none"
 msgErrorQuantity.style.display="none"
 msgErrorRadio.style.display="none"
+msgErrorCondition.style.display="none"
 
 // FONCTION POUR TEST DU PREMON
 
-firstName.addEventListener("change", function() {
+function firstNameFunction() {
   const theFirstName = firstName.value;
    if (regexName(theFirstName)) {
     nameError.style.display="none"
     firstName.style.color="green"
     firstName.style.border= "green solid 3px" 
+    return true
    } else {
     nameError.style.display="block"
     nameError.innerHTML = "Veuillez entrer deux caractères minimum"
@@ -76,38 +82,45 @@ firstName.addEventListener("change", function() {
     nameError.style.color ="red"
     firstName.style.color="red"
     firstName.style.border= "red solid 2px"
+    return false
    }
-})
+}
+
+firstName.addEventListener("change",firstNameFunction )
 
 // FONCTION POUR TEST DU NOM
 
-lastName.addEventListener("change", function() {
+function lastNameFunction(){
   const theLastname = lastName.value;
   if (regexName(theLastname)) {
    console.log("ok")
    lastName.style.color="green"
    nameErrorlast.style.display="none"   
    lastName.style.border= "green solid 3px" 
+   return true
   } else {
    console.log("ko")
     nameErrorlast.style.display="block"
     nameErrorlast.innerHTML = "Veuillez entrer deux caractères minimum"
-    nameErrorlast.style.fontSize =" 13px"
+  nameErrorlast.style.fontSize =" 13px"
     nameErrorlast.style.color ="red"
     lastName.style.border= "red solid 2px"
    lastName.style.color="red"
+   return false
   }
-})
+}
+
+lastName.addEventListener("change", lastNameFunction)
 
 // FONCTION POUR TEST DE L EMAIL
-
-email.addEventListener("change", function() {
+function  emailFunction() {
   const theEmail = email.value;
   if (regeXemail(theEmail)) {
    console.log("ok")
    email.style.color="green"
    msgErrorEmail.style.display="none" 
    email.style.border= "green solid 3px"  
+   return true
   } else {
    console.log("ko")
    msgErrorEmail.style.display="block"
@@ -116,69 +129,118 @@ email.addEventListener("change", function() {
    msgErrorEmail.style.color ="red"
    email.style.color="red"
    email.style.border= "red solid 2px"
-  }
-})
+   return false
+  }}
+
+
+email.addEventListener("change",emailFunction )
 
 // FONCTION POUR ANNIVERSAIRE
-
-birthday.addEventListener("change", function () {
-  let date = new Date(birthday);
-if (birthday == "") {
+function  birthdayFunction() {
+  let noDate = false
+  let date = birthday.value
+  console.log(date);
+if (typeof date === "" || noDate == date) {
   msgErrorBirthday.style.display="block"
   msgErrorBirthday.innerHTML = "Veuillez saisir une date"
   msgErrorBirthday.style.fontSize ="13px"
   msgErrorBirthday.style.color ="red"
   birthday.style.color="red"
   birthday.style.border= "red solid 2px"
+  return false
 }else{
   console.log("KO")
   birthday.style.color="green"
    msgErrorBirthday.style.display="none" 
    birthday.style.border= "green solid 3px"  
+   return true
 }
-})
+}
+
+birthday.addEventListener("change",birthdayFunction )
 
 // FONCTION POUR NOMBRE DE TOURNOIS
 
-quantity.addEventListener("change", function () {
+function  quantityFunction() {
   const quantityValue = quantity.value
-  if (quantityValue < 0|| quantityValue >99  || quantityValue % 1 !== 0) {
+  if (quantityValue < 0|| quantityValue >99  || quantityValue % 1 !== 0 || quantityValue =="") {
     msgErrorQuantity.style.display="block"
     msgErrorQuantity.innerHTML = "Veuillez entrer un nombre entre 0 et 99"
     msgErrorQuantity.style.fontSize ="13px"
     msgErrorQuantity.style.color ="red"
     quantity.style.color="red"
     quantity.style.border= "red solid 2px"
+    return false
   } else  {
     quantity.style.color="green"
     msgErrorQuantity.style.display="none" 
     quantity.style.border= "green solid 3px"  
+    return true
   }
 
-})
+}
+
+quantity.addEventListener("change", quantityFunction)
 
 
 
-radio.forEach((radio)=>radio.addEventListener("change", function () {
-  let isChecked = false
-    if (radio.checked) {
-      isChecked = true;
-      }
-    if (isChecked) {
-      console.log("OK.");
-    } else {
+function  radioFunction() {
+  for (let i = 0; i < radio.length; i++) {
+    if (radio[i].checked) {
+        console.log(radio[i].value + " is selected");
+        msgErrorRadio.style.display="none"
+        return true
+    }
+    else{
+      console.log("No radio button is checked.");
       msgErrorRadio.style.display="block"
       msgErrorRadio.innerHTML = "Veuillez cocher une ville"
       msgErrorRadio.style.fontSize ="13px"
       msgErrorRadio.style.color ="red"
+      return false
     }
-}))
+}
+};
+
+radio.forEach((radio)=>radio.addEventListener("change",radioFunction))
 
 
+function  conditionFunction() {
+  if (conditionGeneral.checked) {
+    console.log("ok");
+    msgErrorCondition.style.display="none"
+    return true
+  } else {
+    console.log("kO");
+    msgErrorCondition.style.display="block"
+    msgErrorCondition.innerHTML = "Veuillez accepter les conditons génerales"
+    msgErrorCondition.style.fontSize ="13px"
+    msgErrorCondition.style.color ="red"
+   conditionGeneral.style.color="red"
+    return false
+  }
+}
 
+conditionGeneral.addEventListener("change", conditionFunction )
+
+
+function validate(e) {
+  if (firstNameFunction(firstName )&&
+      lastNameFunction(lastName )&&
+      emailFunction(email )&&
+      birthdayFunction(birthday )&&
+      quantityFunction(quantity )&&
+      radioFunction(radio )&&
+      conditionFunction(conditionGeneral )) 
+              {
+                console.log("OK");
+                return true
+              } else {
  
-
-
-
-
+          console.log("ko");
+          alert("ko")
+          e.preventDefault()
+          return false
+          }
+ }
 
