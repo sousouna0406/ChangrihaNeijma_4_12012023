@@ -34,6 +34,8 @@ const msgErrorRadio = document.getElementById("radioErrorMsg")
 const conditionGeneral = document.getElementById("checkbox1")
 const msgErrorCondition = document.getElementById("conditionErrorMsg")
 const btnValid = document.querySelector(".btn-submit")
+const validMsg = document.querySelector(".msg-valid")
+const closeBtnValid = document.getElementById("input-valid")
 /* Évenements formulaire ouverture et fermeture */
 const classError = document.querySelector(".error")
 
@@ -43,10 +45,10 @@ modalBtn.forEach((btn) => btn.addEventListener("click", function launchModal() {
 }));
 // Fonction de fermeture du formulaire
 
-
-closeForm.addEventListener("click", function closeMyForm() {
+function closeMyForm() {
   modalbg.style.display="none";
-})
+}
+closeForm.addEventListener("click",closeMyForm )
 
 
 /* Regex Email/Prenom/nom*/
@@ -230,7 +232,8 @@ btnValid.addEventListener("click", function (e) {
     console.log("ok");
     form.style.display = "none"
     divValid.style.display="flex"
-    validMessage.innerHTML = "Merci pour votre inscription";
+    validMsg.innerHTML = "Merci pour votre inscription";
+    closeBtnValid.addEventListener("click", closeMyForm)
   }
   else{
     console.log("ko");
