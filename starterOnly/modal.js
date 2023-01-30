@@ -1,13 +1,3 @@
-// Fonction pour menu responsive
-
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
 // Élements du DOM
 
 const modalbg = document.querySelector(".bground");
@@ -15,8 +5,6 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeForm = document.querySelector(".close");
 const form = document.getElementById("form");
-const submit = document.querySelector(".btn-submit");
-const dataForm = document.querySelectorAll(".formData");
 const divValid = document.getElementById("div-valid");
 const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
@@ -36,24 +24,18 @@ const msgErrorCondition = document.getElementById("conditionErrorMsg");
 const btnValid = document.querySelector(".btn-submit");
 const validMsg = document.querySelector(".msg-valid");
 const closeBtnValid = document.getElementById("input-valid");
-/* Évenements formulaire ouverture et fermeture */
 const classError = document.querySelector(".error");
 
-// Fonction d'ouverture du formulaire
-modalBtn.forEach((btn) =>
-  btn.addEventListener("click", function launchModal() {
-    modalbg.style.display = "block";
-  })
-);
-// Fonction de fermeture du formulaire
+// Paragraphe d'erreur masqué
 
-function closeMyForm() {
-  modalbg.style.display = "none";
-}
-closeForm.addEventListener("click", closeMyForm);
+nameError.style.display = "none";
+nameErrorlast.style.display = "none";
+msgErrorEmail.style.display = "none";
+msgErrorQuantity.style.display = "none";
+msgErrorRadio.style.display = "none";
+msgErrorCondition.style.display = "none";
 
-/* Regex Email/Prenom/nom*/
-
+// FONCTION REGEX EMAIL/PRENOM/NOM
 const regexName = (value) => {
   return /^(?=.{2,})([a-zA-Z\s-])+$/.test(value);
 };
@@ -62,16 +44,30 @@ const regeXemail = (value) => {
     value
   );
 };
-// Paragraphe d'erreur masqué
-nameError.style.display = "none";
-nameErrorlast.style.display = "none";
-msgErrorEmail.style.display = "none";
-msgErrorQuantity.style.display = "none";
-msgErrorRadio.style.display = "none";
-msgErrorCondition.style.display = "none";
+
+// FONCTION MENU NAV
+function editNav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+// FONCTION POUR OUVRIR LA MODALE
+function launchModal() {
+  modalbg.style.display = "block";
+}
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+// FONCTION POUR FERMER LA MODALE
+function closeMyForm() {
+  modalbg.style.display = "none";
+}
+closeForm.addEventListener("click", closeMyForm);
 
 // FONCTION POUR TEST DU PREMON
-
 function firstNameFunction() {
   const theFirstName = firstName.value;
   if (regexName(theFirstName)) {
@@ -89,11 +85,9 @@ function firstNameFunction() {
     return false;
   }
 }
-
 firstName.addEventListener("change", firstNameFunction);
 
 // FONCTION POUR TEST DU NOM
-
 function lastNameFunction() {
   const theLastname = lastName.value;
   if (regexName(theLastname)) {
@@ -113,7 +107,6 @@ function lastNameFunction() {
     return false;
   }
 }
-
 lastName.addEventListener("change", lastNameFunction);
 
 // FONCTION POUR TEST DE L EMAIL
@@ -136,7 +129,6 @@ function emailFunction() {
     return false;
   }
 }
-
 email.addEventListener("change", emailFunction);
 
 // FONCTION POUR ANNIVERSAIRE
@@ -160,11 +152,9 @@ function birthdayFunction() {
     return true;
   }
 }
-
 birthday.addEventListener("change", birthdayFunction);
 
 // FONCTION POUR NOMBRE DE TOURNOIS
-
 function quantityFunction() {
   const quantityValue = quantity.value;
   if (
@@ -187,9 +177,9 @@ function quantityFunction() {
     return true;
   }
 }
-
 quantity.addEventListener("change", quantityFunction);
 
+// FONCTION POUR BOUTON RADIO
 function radioFunction() {
   for (let i = 0; i < radio.length; i++) {
     if (radio[i].checked) {
@@ -206,9 +196,9 @@ function radioFunction() {
     }
   }
 }
-
 radio.forEach((radio) => radio.addEventListener("change", radioFunction));
 
+//FONCTION POUR LES CONDIDTIONS GÉNERALES
 function conditionFunction() {
   if (conditionGeneral.checked) {
     console.log("ok");
@@ -224,9 +214,28 @@ function conditionFunction() {
     return false;
   }
 }
-
 conditionGeneral.addEventListener("change", conditionFunction);
 
+//FONCTION DE VALIDATION DU FORMULAIRE
+function validate() {
+  if (
+    firstNameFunction(firstName) &
+    lastNameFunction(lastName) &
+    emailFunction(email) &
+    birthdayFunction(birthday) &
+    quantityFunction(quantity) &
+    radioFunction(radio) &
+    conditionFunction(conditionGeneral)
+  ) {
+    console.log("OK");
+    return true;
+  } else {
+    console.log("ko");
+    return false;
+  }
+}
+
+// BOUTON QUI APPEL LA FONCTION VALIDATE ET PERMET L'AFFICHAGE DE LA FENETRE CONFIRMATION
 btnValid.addEventListener("click", function (e) {
   if (validate(form)) {
     e.preventDefault();
@@ -240,21 +249,3 @@ btnValid.addEventListener("click", function (e) {
     e.preventDefault();
   }
 });
-
-function validate(e) {
-  if (
-    firstNameFunction(firstName) &&
-    lastNameFunction(lastName) &&
-    emailFunction(email) &&
-    birthdayFunction(birthday) &&
-    quantityFunction(quantity) &&
-    radioFunction(radio) &&
-    conditionFunction(conditionGeneral)
-  ) {
-    console.log("OK");
-    return true;
-  } else {
-    console.log("ko");
-    return false;
-  }
-}
