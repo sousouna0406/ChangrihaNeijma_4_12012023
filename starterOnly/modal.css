@@ -3,7 +3,6 @@
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -80,6 +79,8 @@ img {
   animation: navbar 2s ease 1s 1 normal forwards;
 }
 
+
+
 @media screen and (max-width: 1050px) {
   .topnav a {
     display: none;
@@ -89,9 +90,6 @@ img {
     float: right;
     display: block;
   }
-}
-
-@media screen and (max-width: 1050px) {
   .topnav.responsive {
     position: sticky;
     top: 0;
@@ -141,35 +139,6 @@ img {
   text-align: left;
 }
 
-
-
-
-@media screen and (max-width: 540px) {
-  .topnav a {
-    display: none;
-  }
-
-  .topnav {
-    height: 4rem;
-  }
-
-  .topnav a.icon {
-    float: right;
-    display: block;
-    bottom: 4rem;
-    position: relative;
-    color: red;
-  }
-
-  .main-navbar {
-    float: left;
-    width: 100%;
-  }
-
-  #div-valid {
-    height: 83vh;
-  }
-}
 
 .main-navbar {
   float: right;
@@ -587,68 +556,15 @@ footer {
   margin: 0 20px;
 }
 
-@media screen and (max-width: 800px) {
-  .hero-section {
-    display: block;
-    box-shadow: unset;
-  }
-
-
-
-  .hero-content {
-    background: #fff;
-    color: #000;
-    padding: 0px 0px 20px 0px;
-    overflow: hidden;
-  }
-
-  .hero-content::after {
-    content: unset;
-  }
-
-  .hero-content .btn-signup {
-    display: none;
-  }
-
-  .hero-headline {
-    font-size: 9vw;
-    white-space: normal;
-    font-weight: bolder;
-  }
-
-  .hero-text {
-    width: 70%;
-    font-size: 3vw;
-    overflow: hidden;
-    white-space: normal;
-  }
-
-  .hero-img img {
-    border-radius: 10px;
-    margin-top: 40px;
-  }
-
-  .hero-section>.btn-signup {
-    display: block;
-    margin: 32px auto 10px;
-    padding: 12px 35px;
-    animation: btn 2s ease-in 1s normal none;
-  }
-
-  .copyrights {
-    margin-top: 50px;
-    text-align: center;
-  }
-}
+/* Div pour page formulaire inscription valide */
 
 #div-valid {
   display: none;
   flex-direction: column-reverse;
   align-items: center;
   text-align: center;
-  height: 83vh;
+  
 }
-
 .msg-valid {
 
   font-weight: normal;
@@ -661,7 +577,7 @@ footer {
   position: relative;
   top: 5rem;
 }
-
+/* Style message d'erreur*/
 .error {
   display: block;
   color: #f00;
@@ -672,6 +588,7 @@ footer {
 }
 
 
+/* KEYFRAMES*/
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -739,5 +656,100 @@ footer {
 
   100% {
     scale: 1;
+  }
+}
+
+/* Medias queries*/
+
+@media screen and (min-width :1280px)  {
+  #div-valid{
+    height: 80vh ;
+  }
+}
+@media screen and (min-width :768px) and (max-width: 1280px) {
+  
+  #div-valid{
+    height: 50vh ;
+  }
+}
+@media screen and (max-width: 800px) {
+  .hero-section {
+    display: block;
+    box-shadow: unset;
+  }
+
+  #div-valid {
+    height: 83vh;
+  }
+
+  .hero-content {
+    background: #fff;
+    color: #000;
+    padding: 0px 0px 20px 0px;
+    overflow: hidden;
+  }
+
+  .hero-content::after {
+    content: unset;
+  }
+
+  .hero-content .btn-signup {
+    display: none;
+  }
+
+  .hero-headline {
+    font-size: 9vw;
+    white-space: normal;
+    font-weight: bolder;
+  }
+
+  .hero-text {
+    width: 70%;
+    font-size: 3vw;
+    overflow: hidden;
+    white-space: normal;
+  }
+
+  .hero-img img {
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+
+  .hero-section>.btn-signup {
+    display: block;
+    margin: 32px auto 10px;
+    padding: 12px 35px;
+    animation: btn 2s ease-in 1s normal none;
+  }
+
+  .copyrights {
+    margin-top: 50px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
+
+  .topnav {
+    height: 4rem;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+    bottom: 4rem;
+    position: relative;
+    color: red;
+  }
+
+  .main-navbar {
+    float: left;
+    width: 100%;
+  }
+
+  #div-valid {
+    height: 83vh;
   }
 }
