@@ -91,13 +91,11 @@ firstName.addEventListener("change", firstNameFunction);
 function lastNameFunction() {
   const theLastname = lastName.value;
   if (regexName(theLastname)) {
-    console.log("ok");
     lastName.style.color = "green";
     nameErrorlast.style.display = "none";
     lastName.style.border = "green solid 3px";
     return true;
   } else {
-    console.log("ko");
     nameErrorlast.style.display = "block";
     nameErrorlast.innerHTML = "Veuillez entrer deux caractères minimum";
     nameErrorlast.style.fontSize = " 13px";
@@ -113,13 +111,11 @@ lastName.addEventListener("change", lastNameFunction);
 function emailFunction() {
   const theEmail = email.value;
   if (regeXemail(theEmail)) {
-    console.log("ok");
     email.style.color = "green";
     msgErrorEmail.style.display = "none";
     email.style.border = "green solid 3px";
     return true;
   } else {
-    console.log("ko");
     msgErrorEmail.style.display = "block";
     msgErrorEmail.innerHTML = "Veuillez entrer un email valide";
     msgErrorEmail.style.fontSize = "13px";
@@ -135,7 +131,7 @@ email.addEventListener("change", emailFunction);
 function birthdayFunction() {
   let noDate = false;
   let date = birthday.value;
-  console.log(date);
+
   if (typeof date === "" || noDate == date) {
     msgErrorBirthday.style.display = "block";
     msgErrorBirthday.innerHTML = "Veuillez saisir une date";
@@ -145,7 +141,6 @@ function birthdayFunction() {
     birthday.style.border = "red solid 2px";
     return false;
   } else {
-    console.log("KO");
     birthday.style.color = "green";
     msgErrorBirthday.style.display = "none";
     birthday.style.border = "green solid 3px";
@@ -183,12 +178,9 @@ quantity.addEventListener("change", quantityFunction);
 function radioFunction() {
   for (let i = 0; i < radio.length; i++) {
     if (radio[i].checked) {
-      console.log(radio[i].value + " is selected");
       msgErrorRadio.style.display = "none";
       return true;
     } else {
-      console.log("No radio button is checked.");
-      console.log(radio[i].value + " is NOselected");
       msgErrorRadio.style.display = "block";
       msgErrorRadio.innerHTML = "Veuillez cocher une ville";
       msgErrorRadio.style.fontSize = "13px";
@@ -201,11 +193,9 @@ radio.forEach((radio) => radio.addEventListener("change", radioFunction));
 //FONCTION POUR LES CONDIDTIONS GÉNERALES
 function conditionFunction() {
   if (conditionGeneral.checked) {
-    console.log("ok");
     msgErrorCondition.style.display = "none";
     return true;
   } else {
-    console.log("kO");
     msgErrorCondition.style.display = "block";
     msgErrorCondition.innerHTML = "Veuillez accepter les conditons génerales";
     msgErrorCondition.style.fontSize = "13px";
@@ -227,10 +217,8 @@ function validate() {
     radioFunction(radio) &
     conditionFunction(conditionGeneral)
   ) {
-    console.log("OK");
     return true;
   } else {
-    console.log("ko");
     return false;
   }
 }
@@ -239,13 +227,11 @@ function validate() {
 btnValid.addEventListener("click", function (e) {
   if (validate(form)) {
     e.preventDefault();
-    console.log("ok");
     form.style.display = "none";
     divValid.style.display = "flex";
     validMsg.innerHTML = "Merci pour votre inscription";
     closeBtnValid.addEventListener("click", closeMyForm);
   } else {
-    console.log("ko");
     e.preventDefault();
   }
 });
