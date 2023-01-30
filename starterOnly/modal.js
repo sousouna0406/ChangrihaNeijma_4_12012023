@@ -128,18 +128,35 @@ function emailFunction() {
 email.addEventListener("change", emailFunction);
 
 // FONCTION POUR ANNIVERSAIRE
+
 function birthdayFunction() {
-  let noDate = false;
   let date = birthday.value;
+  let noDate = false;
+
+  function calculateAge(date) {
+    let birthdayFormat = new Date(date.split("/").reverse().join("-"));
+    let dateMilliseconde = birthdayFormat.getTime();
+    let dateAuj = Date.now();
+    let age = dateAuj - dateMilliseconde;
+    let ageDate = new Date(age);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
 
   if (typeof date === "" || noDate == date) {
     msgErrorBirthday.style.display = "block";
-    msgErrorBirthday.innerHTML = "Veuillez saisir une date";
+    msgErrorBirthday.innerHTML = "Veuillez saisir une date valide ";
     msgErrorBirthday.style.fontSize = "13px";
     msgErrorBirthday.style.color = "red";
     birthday.style.color = "red";
     birthday.style.border = "red solid 2px";
     return false;
+  } else if (calculateAge(date) <= 18) {
+    msgErrorBirthday.style.display = "block";
+    msgErrorBirthday.innerHTML = "Il faut être majeur pour s'inscrire";
+    msgErrorBirthday.style.fontSize = "13px";
+    msgErrorBirthday.style.color = "red";
+    birthday.style.color = "red";
+    birthday.style.border = "red solid 2px";
   } else {
     birthday.style.color = "green";
     msgErrorBirthday.style.display = "none";
