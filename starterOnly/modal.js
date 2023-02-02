@@ -141,7 +141,7 @@ function birthdayFunction() {
     birthday.classList.add("border-red");
 
     return false;
-  } else if (calculateAge(date) <= 18) {
+  } else if (calculateAge(date) < 18) {
     msgErrorBirthday.style.display = "block";
     msgErrorBirthday.innerHTML = "Il faut être majeur pour s'inscrire";
     msgErrorBirthday.classList.add("error");
