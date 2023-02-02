@@ -79,8 +79,6 @@ img {
   animation: navbar 2s ease 1s 1 normal forwards;
 }
 
-
-
 @media screen and (max-width: 1050px) {
   .topnav a {
     display: none;
@@ -132,6 +130,7 @@ img {
 
   }
 }
+
 
 .topnav.responsive a {
   float: none;
@@ -579,12 +578,24 @@ footer {
 }
 /* Style message d'erreur*/
 .error {
-  display: block;
   color: #f00;
-  font-size: 10px;
+  font-size: 13px;
   margin-bottom: -35px;
-  left: -2px;
+  
   position: relative;
+}
+.error-nomargin {
+  color: #f00;
+  font-size: 13px;
+  position: relative;
+}
+.border-red{
+  color: #f00;
+  border: #f00 2px solid;
+}
+.border-green{
+  color: green;
+  border: green 2px solid;
 }
 
 
@@ -753,3 +764,5 @@ footer {
     height: 83vh;
   }
 }
+
+

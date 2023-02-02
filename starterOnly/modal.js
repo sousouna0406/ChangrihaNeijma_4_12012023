@@ -72,16 +72,13 @@ function firstNameFunction() {
   const theFirstName = firstName.value;
   if (regexName(theFirstName)) {
     nameError.style.display = "none";
-    firstName.style.color = "green";
-    firstName.style.border = "green solid 3px";
+    firstName.classList.add("border-green");
     return true;
   } else {
+    nameError.innerHTML = "Veuillez entrer 2 caractères ou plus";
     nameError.style.display = "block";
-    nameError.innerHTML = "Veuillez entrer deux caractères minimum";
-    nameError.style.fontSize = "13px";
-    nameError.style.color = "red";
-    firstName.style.color = "red";
-    firstName.style.border = "red solid 2px";
+    nameError.classList.add("error");
+    firstName.classList.add("border-red");
     return false;
   }
 }
@@ -91,17 +88,14 @@ firstName.addEventListener("change", firstNameFunction);
 function lastNameFunction() {
   const theLastname = lastName.value;
   if (regexName(theLastname)) {
-    lastName.style.color = "green";
+    lastName.classList.add("border-green");
     nameErrorlast.style.display = "none";
-    lastName.style.border = "green solid 3px";
     return true;
   } else {
     nameErrorlast.style.display = "block";
-    nameErrorlast.innerHTML = "Veuillez entrer deux caractères minimum";
-    nameErrorlast.style.fontSize = " 13px";
-    nameErrorlast.style.color = "red";
-    lastName.style.border = "red solid 2px";
-    lastName.style.color = "red";
+    nameErrorlast.innerHTML = "Veuillez entrer 2 caractères ou plus";
+    nameErrorlast.classList.add("error");
+    lastName.classList.add("border-red");
     return false;
   }
 }
@@ -111,17 +105,15 @@ lastName.addEventListener("change", lastNameFunction);
 function emailFunction() {
   const theEmail = email.value;
   if (regeXemail(theEmail)) {
-    email.style.color = "green";
+    email.classList.add("border-green");
     msgErrorEmail.style.display = "none";
-    email.style.border = "green solid 3px";
+
     return true;
   } else {
     msgErrorEmail.style.display = "block";
     msgErrorEmail.innerHTML = "Veuillez entrer un email valide";
-    msgErrorEmail.style.fontSize = "13px";
-    msgErrorEmail.style.color = "red";
-    email.style.color = "red";
-    email.style.border = "red solid 2px";
+    msgErrorEmail.classList.add("error");
+    email.classList.add("border-red");
     return false;
   }
 }
@@ -145,22 +137,18 @@ function birthdayFunction() {
   if (typeof date === "" || noDate == date) {
     msgErrorBirthday.style.display = "block";
     msgErrorBirthday.innerHTML = "Veuillez saisir une date valide ";
-    msgErrorBirthday.style.fontSize = "13px";
-    msgErrorBirthday.style.color = "red";
-    birthday.style.color = "red";
-    birthday.style.border = "red solid 2px";
+    msgErrorBirthday.classList.add("error");
+    birthday.classList.add("border-red");
+
     return false;
   } else if (calculateAge(date) <= 18) {
     msgErrorBirthday.style.display = "block";
     msgErrorBirthday.innerHTML = "Il faut être majeur pour s'inscrire";
-    msgErrorBirthday.style.fontSize = "13px";
-    msgErrorBirthday.style.color = "red";
-    birthday.style.color = "red";
-    birthday.style.border = "red solid 2px";
+    msgErrorBirthday.classList.add("error");
+    birthday.classList.add("border-red");
   } else {
-    birthday.style.color = "green";
     msgErrorBirthday.style.display = "none";
-    birthday.style.border = "green solid 3px";
+    birthday.classList.add("border-green");
     return true;
   }
 }
@@ -177,15 +165,12 @@ function quantityFunction() {
   ) {
     msgErrorQuantity.style.display = "block";
     msgErrorQuantity.innerHTML = "Veuillez entrer un nombre entre 0 et 99";
-    msgErrorQuantity.style.fontSize = "13px";
-    msgErrorQuantity.style.color = "red";
-    quantity.style.color = "red";
-    quantity.style.border = "red solid 2px";
+    msgErrorQuantity.classList.add("error-nomargin");
+    quantity.classList.add("border-red");
     return false;
   } else {
-    quantity.style.color = "green";
     msgErrorQuantity.style.display = "none";
-    quantity.style.border = "green solid 3px";
+    quantity.classList.add("border-green");
     return true;
   }
 }
@@ -199,9 +184,8 @@ function radioFunction() {
       return true;
     } else {
       msgErrorRadio.style.display = "block";
-      msgErrorRadio.innerHTML = "Veuillez cocher une ville";
-      msgErrorRadio.style.fontSize = "13px";
-      msgErrorRadio.style.color = "red";
+      msgErrorRadio.innerHTML = "Vous devez choisir une option";
+      msgErrorRadio.classList.add("error-nomargin");
     }
   }
 }
@@ -214,10 +198,9 @@ function conditionFunction() {
     return true;
   } else {
     msgErrorCondition.style.display = "block";
-    msgErrorCondition.innerHTML = "Veuillez accepter les conditons génerales";
-    msgErrorCondition.style.fontSize = "13px";
-    msgErrorCondition.style.color = "red";
-    conditionGeneral.style.color = "red";
+    msgErrorCondition.innerHTML =
+      "Vous devez vérifier que vous acceptez les termes et conditions";
+    msgErrorCondition.classList.add("error-nomargin");
     return false;
   }
 }
@@ -247,7 +230,10 @@ btnValid.addEventListener("click", function (e) {
     form.style.display = "none";
     divValid.style.display = "flex";
     validMsg.innerHTML = "Merci pour votre inscription";
-    closeBtnValid.addEventListener("click", closeMyForm);
+    closeBtnValid.addEventListener("click", function relaodForm() {
+      window.location.reload();
+      closeMyForm();
+    });
   } else {
     e.preventDefault();
   }
