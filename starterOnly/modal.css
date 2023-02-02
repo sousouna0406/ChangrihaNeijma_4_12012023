@@ -576,12 +576,11 @@ footer {
   position: relative;
   top: 5rem;
 }
-/* Style message d'erreur*/
+/* Style messages d'erreurs ou validation */
 .error {
   color: #f00;
   font-size: 13px;
   margin-bottom: -35px;
-  
   position: relative;
 }
 .error-nomargin {
